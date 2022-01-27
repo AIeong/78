@@ -9,7 +9,7 @@
     <script src="https://blog.minhazav.dev/assets/research/html5qrcode/html5-qrcode.min.js" ></script>
     <script>
         var windowWidth = window.innerWidth;
-        var windowHeight = window.innerHeight + 200;
+        var windowHeight = window.innerHeight;
         var qrboxHeight = Math.ceil(windowHeight / 5);
         
         function qinit(){
@@ -28,7 +28,7 @@
             
             // If you want to prefer back camera
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
-            document.getElementById('reader').setAttribute("style","background-color:black;height:100%;width:100%;position:absolute;top:0;left:0;");
+            document.getElementById('reader').setAttribute("style","background-color:black;height:150%;width:100%;position:absolute;top:0;left:0;");
         }
         
         function qstop(){
