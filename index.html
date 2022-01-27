@@ -8,32 +8,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://blog.minhazav.dev/assets/research/html5qrcode/html5-qrcode.min.js" ></script>
     <script>
+        var windowWidth = window.innerWidth;
+        var windowHeight = Math.ceil(window.innerHeight / 4);
+        
         function qinit(){
             const html5QrCode = new Html5Qrcode("reader");
-const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-    /* handle success */
-};
-const config = { fps: 10, qrbox: { width: 450, height: 100 } };
-
-// If you want to prefer back camera
-html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+            const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+                /* handle success */
+            };
+            const config = { fps: 10, qrbox: { width: windowWidth, height: 100 } };
+            
+            // If you want to prefer back camera
+            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
         }
         
         function qstop(){
-            Quagga.stop();
-        }
-        
-        function onScanSuccess(decodedText, decodedResult) {
-            // Handle on success condition with the decoded text or result.
-            console.log(`Scan result: ${decodedText}`, decodedResult);
-             html5QrcodeScanner.clear();
-        }
-        
-        function onScanError(errorMessage) {
-            // handle on error condition, with error message
         }
     </script>
 </head>
+    
 <body>
     <div style="width: 500px" id="reader"></div>
     <p id="window"></p>
@@ -42,10 +35,9 @@ html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
         <button onclick="qstop()">Stop</button>
     </div>
 </body>
-    <script>
-        var windowWidth = window.innerWidth;
-var windowHeight = window.innerHeight;
-        var y = document.getElementById("window");
-y.innerHTML = "Browser Window: width: " + windowWidth + ", height: " + windowHeight + ".";
-    </script>
+    
+<script>
+    var y = document.getElementById("window");
+    y.innerHTML = "Browser Window: width: " + windowWidth + ", height: " + windowHeight + ".";
+</script>
 </html>
