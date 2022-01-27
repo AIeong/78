@@ -8,10 +8,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://blog.minhazav.dev/assets/research/html5qrcode/html5-qrcode.min.js" ></script>
     <script>
-        var windowWidth = window.innerWidth;
-var windowHeight = window.innerHeight;
-        var y = document.getElementById("window");
-y.innerHTML = "Browser Window: width: " + windowWidth + ", height: " + windowHeight + ".";
         function qinit(){
             const html5QrCode = new Html5Qrcode("reader");
 const qrCodeSuccessCallback = (decodedText, decodedResult) => {
@@ -46,4 +42,10 @@ html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
         <button onclick="qstop()">Stop</button>
     </div>
 </body>
+    <script>
+        var windowWidth = window.innerWidth;
+var windowHeight = window.innerHeight;
+        var y = document.getElementById("window");
+y.innerHTML = "Browser Window: width: " + windowWidth + ", height: " + windowHeight + ".";
+    </script>
 </html>
