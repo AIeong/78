@@ -12,15 +12,15 @@
         var windowHeight = Math.ceil(window.innerHeight / 5);
         
         function qinit(){
-            document.getElementById('reader').setAttribute("style","height:100%;width:100%;position:absolute;top:0;left:0;");
-            const html5QrCode = new Html5Qrcode("reader");
+            document.getElementById('reader').setAttribute("style","background-color:black;height:100%;width:100%;position:absolute;top:0;left:0;");
+            /*const html5QrCode = new Html5Qrcode("reader");
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
                 /* handle success */
             };
             const config = { fps: 10, qrbox: { width: windowWidth - 40, height: windowHeight } };
             
             // If you want to prefer back camera
-            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);*/
         }
         
         function qstop(){
