@@ -19,8 +19,8 @@
             const config = { fps: 10, qrbox: { width: windowWidth - 40, height: windowHeight } };
             
             // If you want to prefer back camera
-            document.getElementById('reader').setAttribute("style","height:100%;width:100%;position:absolute;top:0;left:0;");
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+            document.getElementById('reader').setAttribute("style","height:100%;width:100%;position:absolute;top:0;left:0;");
         }
         
         function qstop(){
