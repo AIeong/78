@@ -13,6 +13,12 @@
         
         function qinit(){
             document.getElementById('reader').setAttribute("style","background-color:black;height:100%;width:100%;position:absolute;top:0;left:0;");
+            setTimeout(function(){
+                turnOnCamera();
+            },3000);
+        }
+        
+        function turnOnCamera(){
             const html5QrCode = new Html5Qrcode("reader");
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
                 //handle success
