@@ -10,12 +10,13 @@
     <script>
         var windowWidth = window.innerWidth;
         var windowHeight = Math.ceil(window.innerHeight / 5);
+        var qrboxHeight = Math.ceil(windowHeight / 5);
         
         function qinit(){
-            document.getElementById('reader').setAttribute("style","background-color:black;height:800px;width:500px;position:absolute;top:0;left:0;");
+            document.getElementById('reader').setAttribute("style","background-color:black;height:" + windowHeight + "px;width:" + windowWidth + "px;position:absolute;top:0;left:0;");
             setTimeout(function(){
                 turnOnCamera();
-            },3000);
+            },1000);
         }
         
         function turnOnCamera(){
@@ -23,7 +24,7 @@
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
                 //handle success
             };
-            const config = { fps: 10, qrbox: { width: windowWidth - 40, height: windowHeight } };
+            const config = { fps: 10, qrbox: { width: windowWidth - 40, height: qrboxHeight } };
             
             // If you want to prefer back camera
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
