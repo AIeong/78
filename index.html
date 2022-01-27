@@ -9,7 +9,7 @@
     <script src="https://blog.minhazav.dev/assets/research/html5qrcode/html5-qrcode.min.js" ></script>
     <script>
         var windowWidth = window.innerWidth;
-        var windowHeight = Math.ceil(window.innerHeight);
+        var windowHeight = Math.ceil(window.innerHeight / 5);
         
         function qinit(){
             const html5QrCode = new Html5Qrcode("reader");
@@ -39,8 +39,8 @@
 <script>
     var y = document.getElementById("window");
     y.innerHTML = "Browser Window: width: " + windowWidth + ", height: " + windowHeight + ".";
-    document.getElementById('reader').setAttribute("style","width:100%;height:" + windowHeight + "px");
-    document.getElementById('reader').style.width = '100%';
-    document.getElementById('reader').style.height = windowHeight + 'px';
+    //document.getElementById('reader').setAttribute("style","width:100%;height:" + windowHeight + "px");
+    //document.getElementById('reader').style.width = '100%';
+    //document.getElementById('reader').style.height = windowHeight + 'px';
 </script>
 </html>
