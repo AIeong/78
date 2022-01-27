@@ -30,14 +30,22 @@
                     },
                     decoder : {
                         readers : ['code_128_reader'],
-                        locate: true,
-                        debug: {
-                            drawBoundingBox: true,
-                            showFrequency: false,
-                            drawScanline: true,
-                            showPattern: false
-                        },
-                        multiple: false
+                        halfSample: true,
+  patchSize: "medium", // x-small, small, medium, large, x-large
+  debug: {
+    showCanvas: true,
+    showPatches: true,
+    showFoundPatches: true,
+    showSkeleton: true,
+    showLabels: true,
+    showPatchLabels: true,
+    showRemainingPatchLabels: true,
+    boxFromPatches: {
+      showTransformed: true,
+      showTransformedBox: true,
+      showBB: true
+    }
+  }
                     }
                 }, function(err) {
                     if (err) {
