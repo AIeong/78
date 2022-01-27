@@ -16,7 +16,7 @@
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
                 /* handle success */
             };
-            const config = { fps: 10, qrbox: { width: windowWidth, height: 100 } };
+            const config = { fps: 10, qrbox: { width: windowWidth, height: windowHeight } };
             
             // If you want to prefer back camera
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
@@ -28,16 +28,19 @@
 </head>
     
 <body>
-    <div style="width: 500px" id="reader"></div>
     <p id="window"></p>
     <div>
         <button onclick="qinit()">Scan</button>
         <button onclick="qstop()">Stop</button>
     </div>
+    <div id="reader"></div>
 </body>
     
 <script>
     var y = document.getElementById("window");
     y.innerHTML = "Browser Window: width: " + windowWidth + ", height: " + windowHeight + ".";
+    document.getElementById('reader').setAttribute("style","width:" + windowWidth + "px;height:" + windowHeight + "px");
+    document.getElementById('reader').style.width = windowWidth + 'px';
+    document.getElementById('reader').style.height = windowHeight + 'px';
 </script>
 </html>
