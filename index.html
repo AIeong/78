@@ -1,2 +1,71 @@
-<h1>雜柒集捌 CAT ZAKKA</h1>
-<img src="https://scontent-hkt1-2.xx.fbcdn.net/v/t39.30808-6/260246012_116996654123354_7534908287392944541_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=WWAQfXA8YEQAX9cchwz&_nc_ht=scontent-hkt1-2.xx&oh=00_AT-vygz70QZD7OrYgK80ZeuIB_L1QzEz-1CNKlutWLusWQ&oe=61E1D613"/>
+<!--
+ * @Author: Unking@qq.com
+ * @Date: 2021-06-12 00:00:00
+ * @LastEditTime: 2021-06-12 00:00:00
+ * @Note: 
+ *
+ * 很多人不成功的原因是：1.没有正确引入两个js, 通过浏览器F12来查看是否正确加载
+ *                     2.必须有HTTP服务的方式加载，不能用浏览器直接打开，你可以用apache或者 EXPRESS、KOA之类加载，注意文件后缀类型,本人用KOA 加载ejs,这个文件就是ejs文档
+ *                     3.只能使用localhost 或者127.0.0.1来测试，其他方式要有https支持才行，这是手机底层安全要求
+ *                     4.jquery 网上很容易找到,quagga.js请在https://serratus.github.io/quaggaJS/上下载
+ *                     5.手机浏览官司方例子请见：https://serratus.github.io/quaggaJS/examples/
+ *
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scan test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://raw.githubusercontent.com/serratus/quaggaJS/master/dist/quagga.min.js" ></script>
+    <script>
+        function qinit(){
+            Quagga.init({
+                inputStream : {
+                        name : "Live",
+                        type : "LiveStream",
+                        target: document.querySelector('#my_result')    // Or '#yourElement' (optional)
+                    },
+                    decoder : {
+                        readers : ['code_128_reader'],
+                        debug: {
+                            drawBoundingBox: false,
+                            showFrequency: false,
+                            drawScanline: false,
+                            showPattern: false
+                        },
+                        multiple: false
+                    }
+                }, function(err) {
+                    if (err) {
+                        console.dir(err);
+                        alert('error of init camera')
+                        return
+                    }
+                    console.log("Initialization finished. Ready to start");
+                    Quagga.start();
+ 
+                    Quagga.onDetected(function(data){
+                        console.log(data)
+                        alert(data.codeResult.code)
+                    })
+ 
+            })
+        }
+        function qstop(){
+            Quagga.stop();
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <span id = "my_result" style = "height: 100"></span>
+    </div>
+    <div>
+        <button onclick="qinit()">开始扫描</button>
+        <button onclick="qstop()">停止扫描</button>
+    </div>
+</body>
+</html>
