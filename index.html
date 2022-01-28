@@ -10,10 +10,11 @@
     <script>
         var windowWidth = window.innerWidth;
         var windowHeight = window.innerHeight;
+        var windowAspectRatio = windowWidth / windowHeight;
         var qrboxHeight = Math.ceil(windowHeight / 5);
         
         function qinit(){
-            document.getElementById('reader').setAttribute("style","background-color:blue;height:" + windowHeight + "px;width:" + windowWidth + "px;top:0;left:0;");
+            document.getElementById('reader').setAttribute("style","background-color:blue;height:" + windowHeight + "px;width:" + windowWidth + "px;position:absolute;top:0;left:0;");
             setTimeout(function(){
                 turnOnCamera();
             },1000);
@@ -24,11 +25,11 @@
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
                 //handle success
             };
-            const config = { fps: 10, qrbox: { width: windowWidth - 40, height: qrboxHeight } };
+            const config = { fps: 10, aspectRatio: windowAspectRatio, qrbox: { width: windowWidth - 40, height: qrboxHeight } };
             
             // If you want to prefer back camera
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
-            document.getElementById('reader').setAttribute("style","background-color:blue;height:100%;width:100%;top:0;left:0;");
+            document.getElementById('reader').setAttribute("style","background-color:blue;height:100%;width:100%;position:absolute;top:0;left:0;");
         }
         
         function qstop(){
@@ -47,7 +48,7 @@
     
 <script>
     var y = document.getElementById("window");
-    y.innerHTML = "Browser Window: width: " + windowWidth + ", height: " + windowHeight + ".";
+    y.innerHTML = "Browser Window: width: " + windowWidth + ", height: " + windowHeight + ", radio: " + windowAspectRatio;
     //document.getElementById('reader').setAttribute("style","width:100%;height:" + windowHeight + "px");
     //document.getElementById('reader').style.width = '100%';
     //document.getElementById('reader').style.height = windowHeight + 'px';
