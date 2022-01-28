@@ -14,7 +14,8 @@
         var qrboxHeight = Math.ceil(windowHeight / 5);
         
         function qinit(){
-            document.getElementById('reader').setAttribute("style","background-color:blue;height:" + windowHeight + "px;width:" + windowWidth + "px;position:absolute;top:0;left:0;");
+            document.getElementById("demo").style.display="";
+            document.getElementById('reader').setAttribute("style","background-color:black;height:" + windowHeight + "px;width:" + windowWidth + "px;position:absolute;top:0;left:0;");
             setTimeout(function(){
                 turnOnCamera();
             },1000);
@@ -27,6 +28,7 @@
                 html5QrCode.stop().then((ignore) => {
                     document.getElementById("text").innerHTML = decodedText;
                     document.getElementById("result").innerHTML = decodedResult;
+                    document.getElementById("demo").style.display="none";
                 }).catch((err) => {
                     
                 });
@@ -35,7 +37,7 @@
             
             // If you want to prefer back camera
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
-            document.getElementById('reader').setAttribute("style","background-color:blue;height:100%;width:100%;position:absolute;top:0;left:0;");
+            document.getElementById('reader').setAttribute("style","background-color:black;height:100%;width:100%;position:absolute;top:0;left:0;");
         }
     </script>
 </head>
@@ -53,5 +55,6 @@
 <script>
     var y = document.getElementById("window");
     y.innerHTML = "width: " + windowWidth + ", height: " + windowHeight + ", radio: " + windowAspectRatio;
+    document.getElementById("demo").style.display="none";
 </script>
 </html>
