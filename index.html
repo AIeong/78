@@ -26,8 +26,7 @@
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
                 console.log(decodedText, decodedResult);
                 html5QrCode.stop().then((ignore) => {
-                    document.getElementById("text").innerHTML = decodedText;
-                    document.getElementById("result").innerHTML = decodedResult;
+                    document.getElementById("text").innerHTML = "Content: " + decodedText;
                     document.getElementById("reader").style.display="none";
                 }).catch((err) => {
                     
@@ -45,7 +44,6 @@
 <body>
     <p id="window"></p>
     <p id="text"></p>
-    <p id="result"></p>
     <div>
         <button onclick="qinit()">Scan</button>
     </div>
