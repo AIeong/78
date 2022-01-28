@@ -10,7 +10,7 @@
     <script>
         var windowWidth = window.innerWidth;
         var windowHeight = window.innerHeight;
-        var windowAspectRatio = windowWidth / windowHeight;
+        var windowAspectRatio = windowHeight / windowWidth;
         var qrboxHeight = Math.ceil(windowHeight / 5);
         
         function qinit(){
@@ -48,7 +48,7 @@
     
 <script>
     var y = document.getElementById("window");
-    y.innerHTML = "Browser Window: width: " + windowWidth + ", height: " + windowHeight + ", radio: " + windowAspectRatio;
+    y.innerHTML = "width: " + windowWidth + ", height: " + windowHeight + ", radio: " + windowAspectRatio;
     //document.getElementById('reader').setAttribute("style","width:100%;height:" + windowHeight + "px");
     //document.getElementById('reader').style.width = '100%';
     //document.getElementById('reader').style.height = windowHeight + 'px';
