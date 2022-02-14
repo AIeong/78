@@ -10,14 +10,14 @@
     <script>
         var windowWidth = window.innerWidth;
         var windowHeight = window.innerHeight;
-        var windowAspectRatio = 1;
+        var windowAspectRatio = windowWidth / windowHeight;
         var qrboxHeight = Math.ceil(windowHeight / 5);
         
-        if (windowHeight > windowWidth){
+        /*if (windowHeight > windowWidth){
 			windowAspectRatio = windowWidth / windowHeight;
         }else if (windowHeight < windowWidth){
         	windowAspectRatio = windowHeight / windowWidth;
-        }
+        }*/
         
         function qinit(){
             document.getElementById("reader").style.display="";
