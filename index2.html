@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js" ></script>
     <style type="text/css">
       .my_result video{
+        position: absolute;
         width:100vw;
         height: 100vh;
         object-fit: cover;
@@ -24,9 +25,12 @@
 }
     </style>
     <script>
+      var windowWidth = window.innerWidth;
       var windowHeight = window.innerHeight;
       var halfHeightUp = windowHeight - (windowHeight / 4 * 3);
       var halfHeightDown = halfHeightUp + (windowHeight / 4);
+      var quarterHeight = windowHeight / 4;
+      var halfHeight =  windowHeight / 2;
 
         function qinit(){
             Quagga.init({
@@ -34,14 +38,11 @@
                         name : "Live",
                         type : "LiveStream",
                         constraints: {
+                          width: windowWidth,
+                          height: windowHeight,
                         facingMode: 'environment'
-                    },
-                        area: {
-                        top: '10%',
-                        left: '13%',
-                        bottom: '33%',
-                        right: '10%'
-                    },
+                      },
+                        
                         target: document.querySelector('#my_result')
                     },
                     decoder : {
@@ -62,11 +63,12 @@
                     console.log("Initialization finished. Ready to start");
                     Quagga.start();
                     document.getElementById('my_result').setAttribute("style","position:absolute;top:0;left:0");
-                    document.getElementById('mask_up').setAttribute("style","background-color:black;top:0;left:0;width:100vw;height:25vh;opacity:0.4;z-index:1050;position:absolute");
-                    document.getElementById('mask_down').setAttribute("style","background-color:black;top:50vh;left:0;width:100vw;height:50vh;opacity:0.4;z-index:1050;position:absolute");
+                    document.getElementById('mask_up').setAttribute("style","background-color:black;top:0;left:0;width:100vw;height:" + quarterHeight + "px;opacity:0.4;z-index:1050;position:absolute");
+                    document.getElementById('mask_down').setAttribute("style","background-color:black;top:" + halfHeight + "px;left:0;width:100vw;height:" + halfHeight + "px;opacity:0.4;z-index:1050;position:absolute");
                     document.getElementById('text').setAttribute("style","    background-color: black;width: 100px;margin-left: 100px;z-index: 2000;color: red;");
  
                     Quagga.onDetected(function(result){
+                      console.log(result);
                       var resultLine = result.line;
 
                       var startPointHeight = resultLine[0].y;
@@ -96,7 +98,6 @@
 
                       var startPointHeight = resultLine[0].y;
                       var endPointHeight = resultLine[1].y;
-
                       if ((startPointHeight < halfHeightUp || startPointHeight > halfHeightDown)
                         && (endPointHeight < halfHeightUp || endPointHeight > halfHeightDown)){
                       }else{
