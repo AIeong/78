@@ -31,6 +31,8 @@
       var halfHeightDown = halfHeightUp + (windowHeight / 4);
       var quarterHeight = windowHeight / 4;
       var halfHeight =  windowHeight / 2;
+      console.log(windowWidth);
+      console.log(windowHeight);
 
         function qinit(){
             Quagga.init({
@@ -38,8 +40,8 @@
                         name : "Live",
                         type : "LiveStream",
                         constraints: {
-                          width: windowWidth,
-                          height: windowHeight,
+                          width: {min: windowWidth},
+                          height: {min: windowHeight},
                         facingMode: 'environment'
                       },
                         
@@ -60,8 +62,6 @@
                         alert('error of init camera')
                         return
                     }
-                    var track = Quagga.CameraAccess.getActiveTrack();
-                    track.applyConstraints({advanced: [{zoom: 1}]});
                     Quagga.start();
                     document.getElementById('my_result').setAttribute("style","position:absolute;top:0;left:0");
                     document.getElementById('mask_up').setAttribute("style","background-color:black;top:0;left:0;width:100vw;height:" + quarterHeight + "px;opacity:0.4;z-index:1050;position:absolute");
@@ -69,7 +69,6 @@
                     document.getElementById('text').setAttribute("style","    background-color: black;width: 100px;margin-left: 100px;z-index: 2000;color: red;");
  
                     Quagga.onDetected(function(result){
-                      console.log(result);
                       var resultLine = result.line;
 
                       var startPointHeight = resultLine[0].y;
