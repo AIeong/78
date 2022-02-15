@@ -31,17 +31,18 @@
       var halfHeightDown = halfHeightUp + (windowHeight / 4);
       var quarterHeight = windowHeight / 4;
       var halfHeight =  windowHeight / 2;
-      console.log(windowWidth);
-      console.log(windowHeight);
+      
 
         function qinit(){
+          console.log(windowWidth);
+      console.log(windowHeight);
             Quagga.init({
                 inputStream : {
                         name : "Live",
                         type : "LiveStream",
                         constraints: {
-                          width: {min: windowWidth},
-                          height: {min: windowHeight},
+                          width: windowWidth,
+                          height: windowHeight,
                         facingMode: 'environment'
                       },
                         
