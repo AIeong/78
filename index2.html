@@ -24,6 +24,10 @@
 }
     </style>
     <script>
+      var windowHeight = window.innerHeight;
+      var halfHeightUp = windowHeight - (windowHeight / 4 * 3) - 50;
+      var halfHeightDown = halfHeightUp + (windowHeight / 4) - 50;
+
         function qinit(){
             Quagga.init({
                 inputStream : {
@@ -57,10 +61,22 @@
                     }
                     console.log("Initialization finished. Ready to start");
                     Quagga.start();
-                    document.getElementById('my_result').setAttribute("style","position:absolute;top:0;left:0;");
+                    document.getElementById('my_result').setAttribute("style","position:absolute;top:0;left:0");
+                    document.getElementById('mask_up').setAttribute("style","background-color:black;top:0;left:0;width:100vw;height:25vh;opacity:0.4;z-index:1050;position:absolute");
+                    document.getElementById('mask_down').setAttribute("style","background-color:black;top:50vh;left:0;width:100vw;height:50vh;opacity:0.4;z-index:1050;position:absolute");
  
                     Quagga.onDetected(function(result){
-                        console.log(result.codeResult.code);
+                      var resultLine = result.line;
+
+                      var startPointHeight = resultLine[0].y;
+                      var endPointHeight = resultLine[1].y;
+
+                      if ((startPointHeight < halfHeightUp || startPointHeight > halfHeightDown)
+                        && (endPointHeight < halfHeightUp || endPointHeight > halfHeightDown)){
+                        console.log('超出範圍');
+                      }else{
+                        console.log('成功');
+                      }
                     })
 
                     Quagga.onProcessed(function(result) {
@@ -72,8 +88,6 @@
                 drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
                 
             }
-
-   
 
             if (result.codeResult && result.codeResult.code) {
                 Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
@@ -91,7 +105,10 @@
 </head>
 <body>
     <div id = "my_result" class="my_result">
+      <div id="mask_up"></div>
+      <div id="mask_down"></div>
     </div>
+    
     <div>
         <button onclick="qinit()">开始扫描</button>
         <button onclick="qstop()">停止扫描</button>
