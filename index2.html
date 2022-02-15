@@ -27,12 +27,19 @@
                 inputStream : {
                         name : "Live",
                         type : "LiveStream",
+                        area: {
+                        top: '33%',
+                        left: '33%',
+                        bottom: '33%',
+                        right: '33%'
+                    },
                         target: document.querySelector('#my_result')
                     },
                     decoder : {
                         readers : ['code_128_reader'],
                         multiple: false
-                    }
+                    },
+                    locate: false
                 }, function(err) {
                     if (err) {
                         console.dir(err);
