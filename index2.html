@@ -27,6 +27,9 @@
                 inputStream : {
                         name : "Live",
                         type : "LiveStream",
+                        constraints: {
+                        facingMode: 'environment'
+                    },
                         area: {
                         top: '33%',
                         left: '33%',
@@ -37,7 +40,11 @@
                     },
                     decoder : {
                         readers : ['code_128_reader'],
-                        multiple: false
+                        debug: {
+                        drawBoundingBox: true,
+                        drawScanline: true,
+                        showPattern: true
+                    }
                     },
                     locate: false
                 }, function(err) {
