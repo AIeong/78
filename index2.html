@@ -61,7 +61,7 @@
                         return
                     }
                     var track = Quagga.CameraAccess.getActiveTrack();
-                    track.applyConstraints({advanced: [{zoom: 4}]});
+                    track.applyConstraints({advanced: [{zoom: 1}]});
                     Quagga.start();
                     document.getElementById('my_result').setAttribute("style","position:absolute;top:0;left:0");
                     document.getElementById('mask_up').setAttribute("style","background-color:black;top:0;left:0;width:100vw;height:" + quarterHeight + "px;opacity:0.4;z-index:1050;position:absolute");
