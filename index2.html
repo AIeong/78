@@ -64,12 +64,16 @@
                     document.getElementById('my_result').setAttribute("style","position:absolute;top:0;left:0");
                     document.getElementById('mask_up').setAttribute("style","background-color:black;top:0;left:0;width:100vw;height:25vh;opacity:0.4;z-index:1050;position:absolute");
                     document.getElementById('mask_down').setAttribute("style","background-color:black;top:50vh;left:0;width:100vw;height:50vh;opacity:0.4;z-index:1050;position:absolute");
+                    document.getElementById('text').setAttribute("style","    background-color: black;width: 100px;margin-left: 100px;z-index: 2000;color: red;");
  
                     Quagga.onDetected(function(result){
                       var resultLine = result.line;
 
                       var startPointHeight = resultLine[0].y;
                       var endPointHeight = resultLine[1].y;
+
+                      var y = document.getElementById("text");
+                      y.innerHTML = "halfHeightUp: " + halfHeightUp + ", halfHeightDown: " + halfHeightDown + ", startPointHeight: " + startPointHeight + ", endPointHeight: " + endPointHeight;
 
                       if ((startPointHeight < halfHeightUp || startPointHeight > halfHeightDown)
                         && (endPointHeight < halfHeightUp || endPointHeight > halfHeightDown)){
@@ -113,7 +117,9 @@
 </head>
 <body>
     <div id = "my_result" class="my_result">
-      <div id="mask_up"></div>
+      <div id="mask_up">
+        <p id="text"></p>
+      </div>
       <div id="mask_down"></div>
     </div>
     
