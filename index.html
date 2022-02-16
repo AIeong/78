@@ -14,47 +14,49 @@
         var windowAspectRatio = windowWidth / windowHeight;
         var qrboxHeight = Math.ceil(windowHeight / 5);
 
+        if (checkMobile == true){
+        	windowAspectRatio = windowHeight / windowWidth;
+        }
 
         function checkMobile(w, h)  {
-    var md = new MobileDetect(window.navigator.userAgent);
+        	var md = new MobileDetect(window.navigator.userAgent);
 
-    if (md.phone() || md.tablet()) {
-        if (window.matchMedia('(orientation:portrait)').matches) {
-            if (md.userAgent() !== 'Safari') {
-                windowWidth = h;
-                windowHeight = w;
-            }
+        	if (md.phone() || md.tablet()) {
+        		if (window.matchMedia('(orientation:portrait)').matches) {
+        			if (md.userAgent() !== 'Safari') {
+        				windowWidth = h;
+        				windowHeight = w;
+        			}
+        		}
+        	}
         }
-    }
-}
+        
         function qinit(){
             document.getElementById("reader").style.display="";
-            document.getElementById('reader').setAttribute("style","background-color:black;height:100vh;width:100vw;position:absolute;top:0;left:0;");
+            document.getElementById('reader').setAttribute("style","background-color:black;height:" + windowHeight + "px;width:" + windowWidth + "px;position:absolute;top:0;left:0;");
             setTimeout(function(){
                 turnOnCamera();
             },1000);
         }
         
         function turnOnCamera(){
-        	if (checkMobile == true){
-        		windowAspectRatio = windowHeight / windowWidth;
-        	}
-            
+            const html5QrCode = new Html5Qrcode("reader");
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-                console.log(decodedText);
-                /*html5QrCode.stop().then((ignore) => {
+                console.log(decodedText, decodedResult);
+                html5QrCode.stop().then((ignore) => {
                     document.getElementById("text").innerHTML = "Content: " + decodedText;
                     document.getElementById("reader").style.display="none";
                 }).catch((err) => {
                     
-                });*/
+                });
             };
-            const config = { fps: 10, aspectRatio: windowAspectRatio, qrbox: { width: windowWidth - 40, height: 125} };
+            console.log(windowAspectRatio);
+            const config = { fps: 10, aspectRatio: windowAspectRatio, qrbox: { width: windowWidth - 40, height: qrboxHeight} };
             
             // If you want to prefer back camera
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
-            document.getElementById('reader').setAttribute("style","background-color:black;height:100vh;width:100vw;position:absolute;top:0;left:0;");
-  };
+            document.getElementById('reader').setAttribute("style","background-color:black;height:100%;width:100%;position:absolute;top:0;left:0;");
+        }
     </script>
 </head>
     
@@ -68,7 +70,6 @@
 </body>
     
 <script>
-	const html5QrCode = new Html5Qrcode("reader");
     var y = document.getElementById("window");
     y.innerHTML = "width: " + windowWidth + ", height: " + windowHeight + ", radio: " + windowAspectRatio;
     document.getElementById("reader").style.display="none";
