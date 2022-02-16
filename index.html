@@ -14,7 +14,7 @@
         var windowHeight = window.innerHeight;
         var windowAspectRatio = windowWidth / windowHeight;
         var qrboxHeight = Math.ceil(windowHeight / 5);
-	window.screen.orientation.lock('portrait-primary');
+	screen.orientation.lock('portrait-primary');
 
         function checkMobile()  {
         	var md = new MobileDetect(window.navigator.userAgent);
