@@ -29,14 +29,6 @@
         }
         
         function qinit(){
-        	var elem = document.getElementById("reader");
-if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
-  }
             document.getElementById("reader").style.display="";
             document.getElementById('reader').setAttribute("style","background-color:black;height:" + windowHeight + "px;width:" + windowWidth + "px;position:absolute;top:0;left:0;");
             setTimeout(function(){
@@ -63,6 +55,36 @@ if (elem.requestFullscreen) {
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
             document.getElementById('reader').setAttribute("style","background-color:black;height:100%;width:100%;position:absolute;top:0;left:0;");
         }
+
+        const evt = "onorientationchange" in window ? "orientationchange" : "resize"; //旋转事件
+	
+		window.addEventListener(evt, function () { //事件监听
+			var height2 = document.documentElement.clientWidth;
+			var width2 = document.documentElement.clientHeight;
+			//页面横竖屏切换后触发
+			console.log(width2);
+			console.log(height2);
+			if (width2 > height2) { 
+				
+				screen_width = height2; //横屏，
+				var contentDOM2 = document.getElementById('reader');
+				contentDOM2.style.width = height2 + 'px';
+				contentDOM2.style.height = width2 + 'px';
+				contentDOM2.style.top = (height2 - width2) / 2 + 'px';
+				contentDOM2.style.left = 0 - (height2 - width2) / 2 + 'px';
+				contentDOM2.style.transform = 'rotate(-90deg)'; //旋转90度
+				
+			
+			}else{ 
+				screen_width = height2; //竖屏，
+				var contentDOM3 = document.getElementById('reader');
+				contentDOM3.style.width = '100%';
+				contentDOM3.style.height = '100%';
+				contentDOM3.style.top = '0px';
+				contentDOM3.style.left = '0px';
+				contentDOM3.style.transform = 'none'; //不旋转；
+			}
+		}, false);
     </script>
 </head>
     
