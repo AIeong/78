@@ -13,6 +13,7 @@
         var windowWidth = window.innerWidth;
         var windowHeight = window.innerHeight;
         var windowAspectRatio = windowWidth / windowHeight;
+        var qrboxwWidth = Math.ceil(windowWidth / 5);
         var qrboxHeight = Math.ceil(windowHeight / 5);
 
         function checkMobile()  {
@@ -48,41 +49,21 @@
                     
                 });*/
             };
-            console.log(windowAspectRatio);
-            const config = { fps: 10, aspectRatio: windowAspectRatio, qrbox: { width: windowWidth - 40, height: qrboxHeight} };
-            
-            // If you want to prefer back camera
+            if (windowWidth < windowHeight){
+            	const config = { fps: 10, aspectRatio: windowAspectRatio, qrbox: { width: windowWidth - 40, height: qrboxHeight} };
+            	// If you want to prefer back camera
             html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
             document.getElementById('reader').setAttribute("style","background-color:black;height:100%;width:100%;position:absolute;top:0;left:0;");
+            }else{
+            	const config = { fps: 10, aspectRatio: windowAspectRatio, qrbox: { width: qrboxwWidth, height: windowHeight - 40} };
+            	// If you want to prefer back camera
+            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+            document.getElementById('reader').setAttribute("style","background-color:black;height:100%;width:100%;position:absolute;top:0;left:0;");
+            }
+            
+            
+            
         }
-
-        const evt = "onorientationchange" in window ? "orientationchange" : "resize";
-	
-		window.addEventListener(evt, function () { 
-			var width2 = document.documentElement.clientWidth;
-			var height2 = document.documentElement.clientHeight;
-
-			if (width2 > height2) { 
-				
-				screen_width = height2; 
-				var contentDOM2 = document.getElementById('reader');
-				contentDOM2.style.width = height2 + 'px';
-				contentDOM2.style.height = width2 + 'px';
-				contentDOM2.style.top = (height2 - width2) / 2 + 'px';
-				contentDOM2.style.left = 0 - (height2 - width2) / 2 + 'px';
-				contentDOM2.style.transform = 'rotate(-90deg)'; 
-				
-			
-			}else{ 
-				screen_width = height2; 
-				var contentDOM3 = document.getElementById('reader');
-				contentDOM3.style.width = '100%';
-				contentDOM3.style.height = '100%';
-				contentDOM3.style.top = '0px';
-				contentDOM3.style.left = '0px';
-				contentDOM3.style.transform = 'none';
-			}
-		}, false);
     </script>
 </head>
     
