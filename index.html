@@ -14,11 +14,7 @@
         var windowHeight = window.innerHeight;
         var windowAspectRatio = windowWidth / windowHeight;
         var qrboxHeight = Math.ceil(windowHeight / 5);
-        
-        addEventListener('load', function () {
-		orientationChange();
-		window.onorientationchange = orientationChange;
-	});
+	window.screen.orientation.lock('portrait-primary');
 
         function checkMobile()  {
         	var md = new MobileDetect(window.navigator.userAgent);
@@ -32,23 +28,7 @@
         		}
         	}
         }
-        
-        function orientationChange() {
-		switch (window.orientation) {
-			case 0:
-				alert("肖像模式 0,screen-width: " + screen.width + "; screen-height:" + screen.height);
-				break;
-			case -90:
-				alert("左旋 -90,screen-width: " + screen.width + "; screen-height:" + screen.height);
-				break;
-			case 90:
-				alert("右旋 90,screen-width: " + screen.width + "; screen-height:" + screen.height);
-				break;
-			case 180:
-				alert("风景模式 180,screen-width: " + screen.width + "; screen-height:" + screen.height);
-				break;
-		};
-	};
+	    
         function qinit(){
             document.getElementById("reader").style.display="";
             document.getElementById('reader').setAttribute("style","background-color:black;height:" + windowHeight + "px;width:" + windowWidth + "px;position:absolute;top:0;left:0;");
