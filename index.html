@@ -41,12 +41,12 @@
             const html5QrCode = new Html5Qrcode("reader");
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
                 console.log(decodedText, decodedResult);
-                html5QrCode.stop().then((ignore) => {
+                /*html5QrCode.stop().then((ignore) => {
                     document.getElementById("text").innerHTML = "Content: " + decodedText;
                     document.getElementById("reader").style.display="none";
                 }).catch((err) => {
                     
-                });
+                });*/
             };
             console.log(windowAspectRatio);
             const config = { fps: 10, aspectRatio: windowAspectRatio, qrbox: { width: windowWidth - 40, height: qrboxHeight} };
