@@ -14,8 +14,6 @@
         var windowHeight = window.innerHeight;
         var windowAspectRatio = windowWidth / windowHeight;
         var qrboxHeight = Math.ceil(windowHeight / 5);
-	var myScreenOrientation = window.screen.orientation;
-	myScreenOrientation.lock("portrait");
 
         function checkMobile()  {
         	var md = new MobileDetect(window.navigator.userAgent);
@@ -29,8 +27,16 @@
         		}
         	}
         }
-	    
+        
         function qinit(){
+        	var elem = document.getElementById("reader");
+if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
             document.getElementById("reader").style.display="";
             document.getElementById('reader').setAttribute("style","background-color:black;height:" + windowHeight + "px;width:" + windowWidth + "px;position:absolute;top:0;left:0;");
             setTimeout(function(){
@@ -62,7 +68,6 @@
     
 <body>
     <p id="window"></p>
-    <p id="text"></p>
     <div>
         <button onclick="qinit()">Scan</button>
     </div>
