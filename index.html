@@ -8,24 +8,21 @@
     <title>scan test</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode@2.1.6/html5-qrcode.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.5/mobile-detect.min.js"></script>
     <script>
         var windowWidth = window.innerWidth;
         var windowHeight = window.innerHeight;
         var windowAspectRatio = windowWidth / windowHeight;
         var qrboxHeight = Math.ceil(windowHeight / 5);
 
-        if (checkMobile == true){
-        	windowAspectRatio = windowHeight / windowWidth;
-        }
-
-        function checkMobile(w, h)  {
+        function checkMobile()  {
         	var md = new MobileDetect(window.navigator.userAgent);
 
         	if (md.phone() || md.tablet()) {
         		if (window.matchMedia('(orientation:portrait)').matches) {
         			if (md.userAgent() !== 'Safari') {
-        				windowWidth = h;
-        				windowHeight = w;
+        				windowAspectRatio = windowHeight / windowWidth;
+        				console.log('mobile');
         			}
         		}
         	}
@@ -40,6 +37,7 @@
         }
         
         function turnOnCamera(){
+        	checkMobile();
             const html5QrCode = new Html5Qrcode("reader");
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
                 console.log(decodedText, decodedResult);
